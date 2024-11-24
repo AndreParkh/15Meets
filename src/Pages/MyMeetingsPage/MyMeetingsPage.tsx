@@ -1,49 +1,47 @@
-import { Box, Typography } from '@mui/material'
-import { meetings } from '../../API/placeholders/Meetings'
-import { sortByDate } from '../../helpers/functions'
-import { MeetingCard } from '../../Components/MeetingCard/MeetingCard'
-import { Search } from '../../Components/Search/Search'
-import { Account } from '../../Components/Account/Account'
+import { Box, CssBaseline, Drawer } from "@mui/material"
+import { Sidebar } from "../../Components/Sidebar/Sidebar"
+import { MyMeettingsTab } from "./Tabs/MyMeetingsTab"
+
 
 export const MyMeettingsPage = (): JSX.Element => {
+	const drawerWidth = 360
 
-	const sortedMeetingsByDate = sortByDate(meetings)
-	const sortedMeetings = []
-
-	for (let meeting in sortedMeetingsByDate) {
-		console.log(meeting)
-		sortedMeetings.push(<>
-			<Typography
-				variant='h2'
-				marginY={3}
-			>
-				{meeting}
-			</Typography>
-			{sortedMeetingsByDate[meeting].map(meeting => (
-				<MeetingCard key={meeting.id} meeting={meeting} />
-			))}
-		</>)
-
-	}
-
-	return <>
+	return <Box display={'flex'} height={'100vh'} >
+		<CssBaseline enableColorScheme />
 		<Box
-			marginBottom={4}
-			alignItems={'center'}
-			gap={3}
+			component="nav"
 			sx={{
-				display: 'flex',
+				width:
+					{ sm: drawerWidth },
+				flexShrink: { sm: 0 }
 			}}
 		>
-			<Typography
-				variant='h1'
-				marginRight={'auto'}
+			<Drawer
+				variant="permanent"
+				sx={{
+					display: { xs: 'none', sm: 'block' },
+
+					'& .MuiDrawer-paper': {
+						height: '100vh',
+						// boxSizing: 'border-box',
+						width: drawerWidth,
+						borderRadius: '0 32px 32px 0'
+					},
+				}}
+				open
 			>
-				Мои встречи
-			</Typography>
-			<Search />
-			<Account />
+				<Sidebar />
+			</Drawer>
 		</Box>
-		{...sortedMeetings}
-	</>
+		<Box
+			component="main"
+			sx={{
+				flexGrow: 1,
+				p: 6,
+				width: { sm: `calc(100% - ${drawerWidth}px)` }
+			}}
+		>
+			<MyMeettingsTab />
+		</Box>
+	</Box>
 }

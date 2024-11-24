@@ -7,13 +7,14 @@ import MuiListItemButton, { ListItemButtonProps } from '@mui/material/ListItemBu
 import { styled } from '@mui/material/styles';
 import { NewMeeting } from '../NewMeeting/NewMeeting'
 import { MyMeetingsIcon, SettingsIcon } from '../../assets/CustomIcon/CustomIcon'
-import { Typography } from '@mui/material'
+import { Tab, Tabs, Typography } from '@mui/material'
+import ColorModeSelect from '../SheredTheme/ColorModeSelect'
+import { useState } from 'react'
 
 
 const ListItemButton = styled((props: ListItemButtonProps) => (
 	<MuiListItemButton {...props} />
 ))(({ theme }) => ({
-	// backgroundColor: 'hsla(265, 100%, 78%, 1)',
 	color: 'hsla(0, 0%, 20%, 1)',
 	borderRadius: 24,
 	...theme.applyStyles('dark', {
@@ -25,50 +26,89 @@ const ListItemButton = styled((props: ListItemButtonProps) => (
 	}
 }))
 
+
 export const Sidebar = (): JSX.Element => {
 
-	const buttons = [
-		{ label: 'Мои встречи', icon: <MyMeetingsIcon />, path: '/my-meetings', selected: true },
-		{ label: 'Настройки', icon: <SettingsIcon />, path: '/settings', selected: false }
+	const [value, setValue] = useState(0);
+
+	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+		setValue(newValue);
+	};
+
+
+	const tabs = [
+		{ label: 'Мои встречи', icon: <MyMeetingsIcon />, path: '/my-meetings' },
+		{ label: 'Настройки', icon: <SettingsIcon />, path: '/settings' }
 	]
 
-	return <Box padding={3}>
-		<Typography
-			color='hsla(265, 100 %, 78 %, 1)'
-			marginY={6}
-			fontSize={24}
-			sx={{
-				'&.MuiTypography-body1': {
-					color: 'hsla(265, 100%, 78%, 1)',
-				}
-			}}
+	return <>
+		<Box
+			display={'flex'}
+			flexDirection={'column'}
+			height={'100%'}
+			padding={3}
 		>
-			15Meets
-		</Typography>
-		<NewMeeting />
-		<List sx={{
-			marginTop: 6,
-			padding: 0,
-			display: 'flex',
-			flexDirection: 'column',
-			gap: 2,
-		}}>
-			{buttons.map(button =>
-				<ListItem disablePadding key={button.label}>
-					<ListItemButton selected={button.selected} >
-						<ListItemIcon
-							sx={{
-								marginRight: 1,
-								minWidth: 0,
-							}}>
-							{button.icon}
-						</ListItemIcon>
-						<ListItemText>
-							{button.label}
-						</ListItemText>
-					</ListItemButton>
-				</ListItem>)
-			}
-		</List>
-	</Box>
+			<Typography
+				color='hsla(265, 100 %, 78 %, 1)'
+				marginY={6}
+				fontSize={24}
+				sx={{
+					'&.MuiTypography-body1': {
+						color: 'hsla(265, 100%, 78%, 1)',
+					}
+				}}
+			>
+				15Meets
+			</Typography>
+			<NewMeeting />
+			<Tabs
+				orientation="vertical"
+				value={value}
+				onChange={handleChange}
+				sx={{ border: 0 }}
+			>
+				{tabs.map((tab) => (
+					<Tab
+						key={tab.label}
+						label={tab.label}
+						icon={tab.icon}
+						iconPosition="start"
+						disableRipple
+						sx={{
+							textTransform: 'none',
+							padding: 0,
+							justifyContent: 'start',
+							minHeight: 40,
+						}}
+					/>))}
+			</Tabs>
+			{/* <List sx={{
+				marginTop: 6,
+				padding: 0,
+				display: 'flex',
+				flexDirection: 'column',
+				gap: 2,
+			}}>
+				{buttons.map(button =>
+					<ListItem disablePadding key={button.label}>
+						<ListItemButton selected={button.selected} >
+							<ListItemIcon
+								sx={{
+									marginRight: 1,
+									minWidth: 0,
+								}}>
+								{button.icon}
+							</ListItemIcon>
+							<ListItemText>
+								{button.label}
+							</ListItemText>
+						</ListItemButton>
+					</ListItem>)
+				}
+			</List> */}
+			<Box marginTop={'auto'}>
+				<ColorModeSelect />
+			</Box>
+		</Box >
+	</>
 }

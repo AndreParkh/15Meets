@@ -2,7 +2,7 @@
 //import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import type { ThemeOptions } from '@mui/material/styles';
-// import { inputsCustomizations } from './Customizations/inputs';
+import { inputsCustomizations } from './Customizations/inputs';
 // import { dataDisplayCustomizations } from './Customizations/dataDisplay';
 // import { feedbackCustomizations } from './Customizations/Feedback';
 // import { navigationCustomizations } from './Customizations/Navigation';
@@ -31,7 +31,7 @@ export default function AppTheme({
 			shadows,
 			shape,
 			components: {
-				// ...inputsCustomizations,
+				...inputsCustomizations,
 				// ...dataDisplayCustomizations,
 				// ...feedbackCustomizations,
 				// ...navigationCustomizations,

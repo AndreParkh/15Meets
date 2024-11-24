@@ -43,4 +43,18 @@ export const meetings: IMeeting[] = [
 		updated_at: '2024-10-24T14:15:22Z',
 		created_at: '2024-10-24T14:15:22Z'
 	},
+	{
+		id: '497f6eca-6276-4993-bfeb-53cbbbba6f11',
+		user_id: 2,
+		title: 'Оперативное Совещание 2',
+		meeting_datetime: '2024-10-24T14:16:22Z',
+		audio_file_path: 'string',
+		duration: '08:16',
+		amount_of_speakers: 2,
+		transcription: 'string',
+		type: 'string',
+		workspace_id: 2,
+		updated_at: '2024-10-24T14:15:22Z',
+		created_at: '2024-10-24T14:15:22Z'
+	},
 ]

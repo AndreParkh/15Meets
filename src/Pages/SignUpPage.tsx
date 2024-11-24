@@ -12,7 +12,7 @@ import {
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../Components/SheredTheme/AppTheme';
-import { GoogleIcon, SitemarkIcon } from '../assets/CustomIcon/CustomIcon'
+import { GoogleIcon } from '../assets/CustomIcon/CustomIcon'
 import ColorModeSelect from '../Components/SheredTheme/ColorModeSelect';
 import { Controller, useForm, useFormState } from 'react-hook-form';
 import { ISignUp } from './SignUpPage.interfaces';
@@ -81,7 +81,6 @@ export default function SignUpPage() {
 			<ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
 			<SignUpContainer direction="column" justifyContent="space-between">
 				<Card variant="outlined">
-					<SitemarkIcon />
 					<Typography
 						component="h1"
 						variant="h4"
