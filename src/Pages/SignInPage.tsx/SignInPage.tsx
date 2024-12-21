@@ -8,20 +8,29 @@ import Card from '@mui/material/Card'
 import { Controller, useForm, useFormState } from 'react-hook-form';
 import { ISignIn } from './SignInPage.interfaces';
 import { API } from '../../helpers/API'
+import { useNavigate } from 'react-router'
 
 export default function SignInPage() {
 
 	const { handleSubmit, control } = useForm<ISignIn>({
 		defaultValues: {
-			username: '',
-			password: ''
+			username: import.meta.env.VITE_ADMIN_USERNAME,
+			password: import.meta.env.VITE_ADMIN_PASSWORD
 		}
 	})
+
 	const { errors } = useFormState<ISignIn>({ control })
+
+	const navigate = useNavigate()
 
 	const handleSignIn = async (data: ISignIn) => {
 		const tokens = await API.auth.login(data)
-		console.log(tokens)
+
+		localStorage.setItem("userAccessToken", tokens.access_token);
+		localStorage.setItem("userRefreshToken", tokens.refresh_token);
+		localStorage.setItem("userTokenType", tokens.token_type);
+		navigate('/')
+		// console.log(tokens)
 	}
 
 	return (
@@ -58,8 +67,8 @@ export default function SignInPage() {
 									<TextField
 										name="username"
 										fullWidth
-										sx={{ marginButtom: '2rem' }}
-										placeholder="E-mail"
+										// sx={{ marginButtom: '2rem' }}
+										label="E-mail"
 										value={field.value}
 										onChange={field.onChange}
 										error={!!errors.username?.message}
@@ -76,7 +85,7 @@ export default function SignInPage() {
 									<TextField
 										fullWidth
 										name="password"
-										placeholder="Пароль"
+										label="Пароль"
 										type="password"
 										variant="outlined"
 										value={field.value}
@@ -100,10 +109,12 @@ export default function SignInPage() {
 						Нет аккаунта?{' '}
 						<span>
 							<Link
-								href="/material-ui/getting-started/templates/sign-in/"
+								href="signup"
 								variant="body2"
 								alignSelf={'center'}
-								color='hsla(0, 0%, 20%, 1)'
+								sx={(theme) => ({
+									color: theme.palette.text.primary
+								})}
 							>
 								Зарегистрироваться
 							</Link>

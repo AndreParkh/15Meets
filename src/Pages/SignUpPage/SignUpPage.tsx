@@ -57,7 +57,7 @@ export default function SignUpPage() {
 										name="email"
 										fullWidth
 										sx={{ marginButtom: '2rem' }}
-										placeholder="E-mail"
+										label="E-mail"
 										value={field.value}
 										onChange={field.onChange}
 										error={!!errors.email?.message}
@@ -69,7 +69,7 @@ export default function SignUpPage() {
 							<Controller
 								control={control}
 								name='password'
-								rules={{ minLength: { value: 6, message: 'Password must be at least 6 characters long.' } }}
+								rules={{ minLength: { value: 4, message: 'Password must be at least 4 characters long.' } }}
 								render={({ field }) => (
 									<TextField
 										fullWidth
@@ -88,7 +88,7 @@ export default function SignUpPage() {
 							<Controller
 								control={control}
 								name='repeatPassword'
-								rules={{ minLength: { value: 6, message: 'Password must be at least 6 characters long.' } }}
+								rules={{ minLength: { value: 4, message: 'Password must be at least 4 characters long.' } }}
 								render={({ field }) => (
 									<TextField
 										fullWidth
@@ -117,10 +117,12 @@ export default function SignUpPage() {
 						Есть аккаунт?{' '}
 						<span>
 							<Link
-								href="/material-ui/getting-started/templates/sign-in/"
+								href="/signin"
 								variant="body2"
 								alignSelf={'center'}
-								color='hsla(0, 0%, 20%, 1)'
+								sx={(theme) => ({
+									color: theme.palette.text.primary
+								})}
 							>
 								Войти
 							</Link>

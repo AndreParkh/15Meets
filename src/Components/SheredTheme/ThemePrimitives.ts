@@ -1,4 +1,17 @@
 import { createTheme, alpha, PaletteMode, Shadows } from '@mui/material/styles';
+import HandilProOtf from '../../assets/fonts/HandilPro-Medium.otf'
+
+const HandilPro = {
+	fontFamily: "Handil Pro",
+	fontStyle: "normal",
+	fontDisplay: "swap",
+	fontWeight: 400,
+	src: `
+    url(${HandilProOtf}) format('otf')
+  `,
+	unicodeRange:
+		"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF",
+};
 
 declare module '@mui/material/Paper' {
 	interface PaperPropsVariantOverrides {
@@ -96,22 +109,22 @@ export const red = {
 };
 
 export const purple = {
-	main: 'hsla(265, 100%, 78 %, 1)',
-	ligth: 'hsla(264, 100%, 85%, 1)',
+	main: 'hsl(265, 100%, 75%)',
+	ligth: 'hsl(265, 100%, 86%)',
 }
 
 export const orange = {
-	main: 'hsla(17, 99%, 62%, 1)',
-	light: 'hsla(17, 100%, 81%, 1)',
+	main: 'hsl(17, 99%, 62%)',
+	light: 'hsl(17, 100%, 81%)',
 }
 
 export const green = {
-	main: 'hsla(71, 77%, 49%, 1)',
-	light: 'hsla(71, 100%, 62%, 1)',
+	main: 'hsl(71, 77%, 49%)',
+	light: 'hsl(71, 100%, 62%)',
 }
 export const blue = {
-	main: 'hsla(171, 83%, 60%, 1)',
-	light: 'hsla(171, 100%, 86%, 1)'
+	main: 'hsl(171, 83%, 60%)',
+	light: 'hsl(171, 100%, 86%)'
 }
 
 export const getDesignTokens = (mode: PaletteMode) => {
@@ -202,7 +215,7 @@ export const getDesignTokens = (mode: PaletteMode) => {
 			},
 		},
 		typography: {
-			fontFamily: ['"Inter", "sans-serif"'].join(','),
+			fontFamily: ['"Handil Pro", "sans-serif"'].join(','),
 			h1: {
 				fontSize: defaultTheme.typography.pxToRem(48),
 				fontWeight: 600,
@@ -261,11 +274,14 @@ export const colorSchemes = {
 	light: {
 		palette: {
 			primary: {
-				light: brand[200],
-				main: brand[400],
-				dark: brand[700],
-				contrastText: brand[50],
+				light: purple.ligth,
+				main: purple.main,
+				dark: purple.main,
+				contrastText: 'hsla(0, 0%, 100%, 1)',
 			},
+			// secondaty:{
+			// 	main: hsla(268, 40%, 96%, 1)
+			// },
 			info: {
 				light: brand[100],
 				main: brand[300],
@@ -292,13 +308,13 @@ export const colorSchemes = {
 			},
 			divider: alpha(gray[300], 0.4),
 			background: {
-				default: 'hsla(268, 40%, 96%, 1)',
-				paper: 'hsla(0, 0%, 100%, 1)',
+				default: 'hsl(268, 40%, 96%)',
+				paper: 'hsl(0, 0%, 100%)',
 			},
 			text: {
-				primary: gray[800],
-				secondary: gray[600],
-				warning: orangeOld[400],
+				primary: 'hsl(0, 0%, 20%)',
+				secondary: purple.main,
+				// warning: orangeOld[400],
 			},
 			action: {
 				hover: alpha(gray[200], 0.2),
@@ -311,10 +327,10 @@ export const colorSchemes = {
 	dark: {
 		palette: {
 			primary: {
-				contrastText: brand[50],
-				light: brand[300],
-				main: brand[400],
-				dark: brand[700],
+				contrastText: 'hsl(0, 0%, 100%)',
+				light: purple.ligth,
+				main: purple.main,
+				dark: purple.main,
 			},
 			info: {
 				contrastText: brand[300],
@@ -342,12 +358,12 @@ export const colorSchemes = {
 			},
 			divider: alpha(gray[700], 0.6),
 			background: {
-				default: 'hsla(0, 0 %, 13 %, 1)',
-				paper: 'hsla(0, 0%, 20%, 1)',
+				default: 'hsl(0, 0%, 13%)',
+				paper: 'hsl(0, 0%, 20%)',
 			},
 			text: {
 				primary: 'hsl(0, 0%, 100%)',
-				secondary: gray[400],
+				secondary: purple.main,
 			},
 			action: {
 				hover: alpha(gray[600], 0.2),
@@ -360,7 +376,7 @@ export const colorSchemes = {
 };
 
 export const typography = {
-	fontFamily: ['"Inter", "sans-serif"'].join(','),  //['"Handil Pro", "sans-serif"']
+	fontFamily: ['"Handil Pro", "sans-serif"'].join(','),  //['"Handil Pro", "sans-serif"']
 	h1: {
 		fontSize: defaultTheme.typography.pxToRem(24),
 		fontWeight: 500,

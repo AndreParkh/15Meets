@@ -1,9 +1,9 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { meetings } from '../../../API/placeholders/Meetings'
 import { groupByDate } from '../../../helpers/functions'
 import { MeetingCard } from '../../../Components/MeetingCard/MeetingCard'
-import { Search } from '../../../Components/Search/Search'
-import { Account } from '../../../Components/Account/Account'
+// import { Search } from '../../../Components/Search/Search'
+// import { Account } from '../../../Components/Account/Account'
 
 export const MyMeettingsTab = (): JSX.Element => {
 
@@ -33,16 +33,23 @@ export const MyMeettingsTab = (): JSX.Element => {
 	return <>
 		<Box
 			display={'flex'}
-			marginBottom={4}
 			alignItems={'center'}
 			gap={3}
 		>
-			<Typography variant='h1' marginRight={'auto'}>
+			<Container
+				sx={{
+					m: 'auto',
+					padding: { 'sm': 0 },
+					maxWidth: { 'lg': 1680 },
+				}}
+			>
+				{...meetingNodes}
+			</Container>
+			{/* <Typography variant='h1' marginRight={'auto'}>
 				Мои встречи
-			</Typography>
+			</Typography> */}
 			{/* <Search /> */}
 			{/* <Account /> */}
-		</Box>
-		{...meetingNodes}
+		</Box >
 	</>
 }

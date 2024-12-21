@@ -15,12 +15,12 @@ export const API = {
 					headers: {
 						ContentType: 'application/x-www-form-urlencoded'
 					},
-					body: new URLSearchParams(userData.toString())
+					body: new URLSearchParams(userData)
 				})
-
+				// let tokens
 				if (response.ok) {
+					// tokens = await response.json()
 					return response.json()
-					// console.log(data)
 				}
 
 			} catch (error) {

@@ -11,14 +11,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { GoogleIcon, UploadIcon, ZoomIcon } from '../../assets/CustomIcon/CustomIcon';
 
 const Accordion = styled((props: AccordionProps) => (
-	<MuiAccordion disableGutters elevation={0}  {...props} />
+	<MuiAccordion disableGutters elevation={0} {...props} />
 ))(({ theme }) => ({
 	boxSizing: 'border-box',
-	// backgroundColor: 'hsla(0, 0%, 100%, 1)',
-	color: 'hsla(0, 0%, 100%, 1)',
+	color: theme.palette.primary.contrastText,
 	padding: 0,
 	width: '100%',
-	border: '2px solid hsla(265, 100%, 78%, 1)',
+	border: `2px solid ${theme.palette.primary.main}`,
 	'&.MuiAccordion-rounded': {
 		borderRadius: 24,
 	}
@@ -30,9 +29,9 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 	padding: 16,
 	minHeight: 20,
 	borderRadius: 20,
-	backgroundColor: 'hsla(265, 100%, 78%, 1)',
+	backgroundColor: theme.palette.primary.main,
 	'& .MuiAccordionSummary-expandIconWrapper': {
-		color: 'hsla(0, 0%, 100%, 1)',
+		color: theme.palette.primary.contrastText,
 	},
 	'& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
 		transform: 'rotate(45deg)',
@@ -46,12 +45,9 @@ const AccordionDetails = styled((props: AccordionDetailsProps) => (
 	<MuiAccordionDetails {...props} />
 ))(({ theme }) => ({
 	backgroundColor: 'transparent',
-	color: 'hsla(0, 0%, 20%, 1)',
+	color: theme.palette.text.primary,
 	padding: 0,
 	margin: '8px 16px',
-	...theme.applyStyles('dark', {
-		color: 'hsla(0, 0%, 100%, 1)',
-	}),
 }))
 
 
@@ -82,7 +78,6 @@ export const NewMeeting = (): JSX.Element => {
 				expandIcon={<AddIcon />}
 				aria-controls="new-meeting"
 				id="new-meeting"
-
 			>
 				Новая встреча
 			</AccordionSummary>

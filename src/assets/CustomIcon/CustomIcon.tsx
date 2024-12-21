@@ -1,14 +1,10 @@
-import * as React from 'react';
 import MuiSvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import { styled } from '@mui/material/styles';
 
 const SvgIcon = styled((props: SvgIconProps) => (
 	<MuiSvgIcon {...props} />
 ))(({ theme }) => ({
-	stroke: 'hsla(0, 0%, 20%, 1)',
-	...theme.applyStyles('dark', {
-		stroke: 'hsla(0, 0%, 100%, 1)'
-	}),
+	stroke: theme.palette.text.primary,
 }))
 
 

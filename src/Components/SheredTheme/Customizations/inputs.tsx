@@ -58,11 +58,10 @@ export const inputsCustomizations: Components<Theme> = {
 						},
 						style: {
 							color: 'white',
-							backgroundColor: 'hsla(265, 100%, 75%, 1)',
-							// border: `1px solid ${gray[700]}`,
+							backgroundColor: theme.palette.primary.main,
 							'&:hover': {
 								backgroundImage: 'none',
-								backgroundColor: 'hsla(265, 100%, 86%, 1)',
+								backgroundColor: theme.palette.primary.light,
 								boxShadow: 'none',
 							},
 							// ...theme.applyStyles('dark', {
@@ -360,9 +359,9 @@ export const inputsCustomizations: Components<Theme> = {
 	// },
 	MuiInputBase: {
 		styleOverrides: {
-			// 	root: {
-			// 		border: 'none',
-			// 	},
+			root: {
+				border: 'none',
+			},
 			input: {
 				// 		'&::placeholder': {
 				// 			opacity: 0.7,
@@ -373,27 +372,28 @@ export const inputsCustomizations: Components<Theme> = {
 	},
 	MuiOutlinedInput: {
 		styleOverrides: {
+			notchedOutline: ({ theme }) => ({
+				border: '2px solid hsl(0, 0%, 90%)',
+				'&:hover': {
+					borderColor: theme.palette.primary.light
+				}
+			}),
 			input: {
-				padding: '8px 16px',
+				padding: '8px	 16px',
 			},
 			root: ({ theme }) => ({
 				padding: '0',
-				// color: '#000',
-				// borderRadius: 24,	
-				border: `2px solid #E5E5E5`,
+				borderRadius: 24,
 				backgroundColor: '#FFF',
 				transition: 'border 120ms ease-in',
-				// '&:hover': {
-				// 	borderColor: '#B37FFF',
-				// },
 				[`&.${outlinedInputClasses.focused}`]: {
-					borderColor: '#B37FFF',
+					borderColor: theme.palette.primary.main,
 				},
-				...theme.applyStyles('dark', {
-					'&:hover': {
-						backgroundColor: '#000',
-					},
-				}),
+				// ...theme.applyStyles('dark', {
+				// '&:hover': {
+				// 	backgroundColor: '#000',
+				// },
+				// }),
 				// 		variants: [
 				// 			{
 				// 				props: {
@@ -412,12 +412,8 @@ export const inputsCustomizations: Components<Theme> = {
 				// 				},
 				// 			},
 				// 		],
+
 			}),
-			notchedOutline: {
-				// padding: '0 14px',
-				border: 'none',
-				// borderRadius: 24
-			},
 		},
 	},
 	// MuiInputAdornment: {
@@ -430,12 +426,13 @@ export const inputsCustomizations: Components<Theme> = {
 	// 		}),
 	// 	},
 	// },
-	// MuiFormLabel: {
-	// 	styleOverrides: {
-	// 		root: ({ theme }) => ({
-	// 			typography: theme.typography.caption,
-	// 			marginBottom: 8,
-	// 		}),
-	// 	},
-	// },
+	MuiFormLabel: {
+		styleOverrides: {
+			root: ({ theme }) => ({
+				color: 'hsl(0, 0%, 62%)',
+				typography: theme.typography.caption,
+				// marginBottom: 8,
+			}),
+		},
+	},
 };
